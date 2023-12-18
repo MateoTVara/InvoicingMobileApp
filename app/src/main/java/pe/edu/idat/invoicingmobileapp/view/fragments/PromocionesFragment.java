@@ -3,64 +3,50 @@ package pe.edu.idat.invoicingmobileapp.view.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import pe.edu.idat.invoicingmobileapp.R;
+import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PromocionesFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import pe.edu.idat.invoicingmobileapp.R;
+import pe.edu.idat.invoicingmobileapp.databinding.FragmentPromocionesBinding;
+import pe.edu.idat.invoicingmobileapp.retrofit.response.PromocionesResponse;
+import pe.edu.idat.invoicingmobileapp.view.adapters.PromocionesAdapter;
+import pe.edu.idat.invoicingmobileapp.viewmodel.PromocionesViewModel;
+
 public class PromocionesFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public PromocionesFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment PromocionesFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static PromocionesFragment newInstance(String param1, String param2) {
-        PromocionesFragment fragment = new PromocionesFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    private FragmentPromocionesBinding binding;
+    private PromocionesViewModel promocionesViewModel;
+    private PromocionesAdapter promocionesAdapter = new PromocionesAdapter();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        binding = FragmentPromocionesBinding.inflate(inflater,
+                container, false);
+        promocionesViewModel= new ViewModelProvider(requireActivity())
+                .get(PromocionesViewModel.class);
+        binding.rvpromociones.setLayoutManager(
+                new LinearLayoutManager(requireActivity())
+        );
+        binding.rvpromociones.setAdapter(promocionesAdapter);
+        promocionesViewModel.listarPromociones();
+        promocionesViewModel.listpromocionesMutableLiveData.observe(
+                getViewLifecycleOwner(),
+                new Observer<List<PromocionesResponse>>() {
+                    @Override
+                    public void onChanged(List<PromocionesResponse> promocionesResponses) {
+                        promocionesAdapter.setPromociones(promocionesResponses);
+                    }
+                }
+        );
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_promociones, container, false);
+        return binding.getRoot();
     }
 }

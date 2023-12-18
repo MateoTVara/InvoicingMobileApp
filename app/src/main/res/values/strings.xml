@@ -47,4 +47,7 @@
     <string name="textids">ID</string>
     <string name="btnactualizarlistado">Actualizar Listado</string>
     <string name="modifypedfragmenttitle">Modificar Fragmento</string>
+    <string name="tvpromodeshint">Descripcion</string>
+    <string name="tvfchainihint">Fecha Inicial</string>
+    <string name="tvfchafin">Fecha final</string>
 </resources>

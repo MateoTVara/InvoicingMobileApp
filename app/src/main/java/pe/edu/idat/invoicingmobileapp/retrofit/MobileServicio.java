@@ -60,4 +60,7 @@ public interface MobileServicio {
 
     @POST("detalle/asignarIdped/{idped}")
     Call<String> asignacionIdpedADetalles(@Path("idped") int idped);
+
+    @GET("promocion/listar")
+    Call<List<PromocionesResponse>> listarPromociones();
 }
