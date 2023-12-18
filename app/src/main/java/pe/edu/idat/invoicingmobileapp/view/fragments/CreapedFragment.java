@@ -15,7 +15,6 @@ import android.widget.*;
 
 import java.util.List;
 
-import pe.edu.idat.invoicingmobileapp.bd.entity.Pedido;
 import pe.edu.idat.invoicingmobileapp.databinding.FragmentCreapedBinding;
 import pe.edu.idat.invoicingmobileapp.retrofit.request.*;
 import pe.edu.idat.invoicingmobileapp.retrofit.response.*;

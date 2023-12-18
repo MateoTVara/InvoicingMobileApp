@@ -31,6 +31,9 @@ public interface MobileServicio {
     @GET("cliente/buscarPorRazonSocialParcial/{partialRazonSocial}")
     Call<List<ListcliResponse>> sugerenciasPorRazonSocial(@Path("partialRazonSocial") String razonSocial);
 
+    @GET("clientes/listar")
+    Call<List<ListcliResponse>> listadoClientes();
+
     @GET("producto/buscarPorDescripcionParcial/{partialDescripcion}")
     Call<List<ListproResponse>> sugerenciasPorDescripcion(@Path("partialDescripcion") String descripcion);
 

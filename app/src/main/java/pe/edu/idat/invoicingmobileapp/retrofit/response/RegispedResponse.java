@@ -11,4 +11,5 @@ public class RegispedResponse {
     public void setIdped(int idped) {
         this.idped = idped;
     }
+
 }
