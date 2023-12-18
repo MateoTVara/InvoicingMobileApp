@@ -46,7 +46,9 @@ public class PromocionesAdapter extends RecyclerView.Adapter<PromocionesAdapter.
     }
 
     public void setPromociones(List<PromocionesResponse> promociones){
+        promocionesResponseList.clear();
         promocionesResponseList.addAll(promociones);
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
