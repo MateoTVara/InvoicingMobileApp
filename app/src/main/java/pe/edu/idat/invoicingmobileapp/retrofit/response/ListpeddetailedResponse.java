@@ -10,6 +10,7 @@ public class ListpeddetailedResponse {
     private String nombre;
     private String razonsocial;
     private String rucdni;
+    private Double total;
 
     public String getDireccion() {
         return direccion;
@@ -81,5 +82,13 @@ public class ListpeddetailedResponse {
 
     public void setRucdni(String rucdni) {
         this.rucdni = rucdni;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
     }
 }
